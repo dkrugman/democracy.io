@@ -25,7 +25,12 @@ class CongressLegislatorSearch {
     this.warnLoaded();
 
     if (this.legislators.sortedByStates.hasOwnProperty(state) === false)
-      return [];
+    {
+    console.log("sortedByStates.hasOwnProperty(state) === false");
+    return [];
+    } else {
+    console.log("sortedByStates.hasOwnProperty(state) !== false");
+    }	
 
     return this.legislators.sortedByStates[state].filter(
       legislator =>

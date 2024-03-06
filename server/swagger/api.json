@@ -2,10 +2,10 @@
     "swagger": "2.0",
     "info": {
         "title": "Democracy.io API",
-        "description": "Internal API used by the democracy.io site",
+        "description": "Internal API used by the rezz.co site",
         "version": "1.0.0"
     },
-    "host": "api.democracy.io",
+    "host": "api.rezz.co",
     "schemes": [
         "https"
     ],

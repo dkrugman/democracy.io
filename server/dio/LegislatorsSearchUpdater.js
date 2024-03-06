@@ -47,7 +47,7 @@ class CongressLegislatorSearchUpdater {
         await this.update();
       } catch (e) {
         logger.error("[Congress Legislators] Automatic update failed", e);
-        sentry.captureException(e);
+        //sentry.captureException(e);
 
         // TODO: handle errors
         // should this be retried? should it clear the interval?

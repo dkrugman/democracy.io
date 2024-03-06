@@ -6,6 +6,7 @@ var helpers = require('../helpers/api');
 var models = require('../../../models');
 var Raven = require('../raven-client');
 
+
 var api = function ($http, dioConfig) {
 
   var siteConfig = dioConfig.SITE;
@@ -23,7 +24,7 @@ var api = function ($http, dioConfig) {
           cb(null, data.data);
         })
         .catch(function(data) {
-          Raven.captureException(data);
+          Sentry.captureException(data);
           cb(data, null);
         });
     },

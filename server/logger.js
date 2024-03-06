@@ -11,7 +11,9 @@ const development = {
         format.timestamp(),
         format.simple()
       )
-    })
+    }),
+    new winston.transports.File({ filename: 'development.log',
+                                  level: "debug" })
   ]
 };
 
@@ -28,8 +30,15 @@ const test = {
 const production = {
   transports: [
     new winston.transports.Console({
-      level: "info"
-    })
+      level: "debug",
+      format: format.combine(
+        format.colorize({ all: true }),
+        format.timestamp(),
+        format.simple()
+      )
+    }),
+    new winston.transports.File({ filename: 'production.log',
+				  level: "debug" })
   ]
 };
 
@@ -51,4 +60,5 @@ function getEnvConfig() {
 }
 
 const logger = winston.createLogger(getEnvConfig());
+logger.info('Logging started');
 module.exports = logger;

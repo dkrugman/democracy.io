@@ -31,7 +31,7 @@ app.use(
 
 // logger
 app.use((req, res, next) => {
-  logger.info(`[Web] ${req.method} ${req.path} - ${res.statusCode}`, {
+  logger.info(`[Web] ${req.method} ${req.originalUrl} - ${res.statusCode}`, {
     params: req.params
   });
   next();

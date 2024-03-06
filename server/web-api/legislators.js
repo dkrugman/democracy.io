@@ -20,7 +20,16 @@ expressRouter.get("/legislators/findByDistrict", async (req, res) => {
     );
   }
 
+  //logger.info("REQUEST");
+  //logger.info(`State: ${state} , District: ${district}`);
+  console.log("REQUEST");
+  console.log(`State: ${state} , District: ${district}`);
+
   var legislators = DIOLegislators.findLegislators(state, district);
+
+  console.log($legislators);
+  console.log("----");
+  console.log(`$legislators`);
 
   var bioguideIds = legislators.map(function(legislator) {
     return legislator.bioguideId;

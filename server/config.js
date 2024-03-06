@@ -5,11 +5,9 @@
  * move NODE_APP_INSTANCE aside during configuration loading
  */
 
-var appInstance = process.env.NODE_APP_INSTANCE;
-process.env.NODE_APP_INSTANCE = '';
+process.env.NODE_APP_INSTANCE = 'production';
 var config = require('config').get('SERVER');
 // @ts-ignore
 config.VERSION = require('./../package.json').version;
-process.env.NODE_APP_INSTANCE = appInstance;
 
 module.exports = config;
