@@ -84,7 +84,11 @@ var LegislatorPickerController = /*@ngInject*/ function($scope, $location, $time
       } else {
         if (serverErr) {
           // TODO(sina): Show a server error, try again later
+	  console.log("SERVER ERR!");
+	  console.log(serverErr);
         } else {
+          console.log("OTHER ERR! - legislatorsFound?");
+          console.log(legislatorsFound);
           // TODO(sina): Decide what to do here. Maybe clear dio-data and kick the user back?
         }
       }

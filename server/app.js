@@ -2,22 +2,25 @@ var express = require("express");
 var lusca = require("lusca");
 var logger = require("./logger");
 var config = require("./config");
-var Sentry = require("@sentry/node");
+//var Sentry = require("@sentry/node");
 var app = express();
 
-Sentry.init({
-  dsn: config.CREDENTIALS.SENTRY_DSN,
-  disabled: process.env.NODE_ENV === "test"
-});
+//Sentry.init({
+//  dsn: config.CREDENTIALS.SENTRY_DSN,
+//  disabled: true    //process.env.NODE_ENV === "test"
+//});
 
 // exception tracking
-app.use(Sentry.Handlers.requestHandler());
+//app.use(Sentry.Handlers.requestHandler());
 
 app.locals["CONFIG"] = config;
 
 
 // NOTE: this assumes you're running behind an nginx instance or other proxy
 app.enable("trust proxy");
+
+// Turn off TLS / certificate checking due to some excpired cert in chain
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 // security
 app.use(
@@ -61,6 +64,6 @@ swaggerMiddleware(apiDef, app, function(err, middleware) {
 app.use(require("./web-static/app"));
 
 // error handlers - order dependent
-app.use(Sentry.Handlers.errorHandler());
+//app.use(Sentry.Handlers.errorHandler());
 
 module.exports = app;

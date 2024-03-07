@@ -1,5 +1,5 @@
 const logger = require("../logger");
-const sentry = require("@sentry/node");
+//const sentry = require("@sentry/node");
 /**
  * In-memory database of legislator data
  */
@@ -31,6 +31,8 @@ class CongressLegislatorSearch {
     } else {
     console.log("sortedByStates.hasOwnProperty(state) !== false");
     }	
+
+    console.log(this.legislators.sortedByStates[state].filter(legislator => legislator.chamber === "senate" || (legislator.chamber === "house" && legislator.district === district)));
 
     return this.legislators.sortedByStates[state].filter(
       legislator =>

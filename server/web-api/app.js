@@ -33,9 +33,9 @@ function ipThrottleMiddleware() {
 
 // Request throttling
 // Only throttle requests to the messages endpoints
-var pathRe = /^\/api.*\/message$/;
-const ipThrottle = require("../middleware/ip-throttle");
-app.use(pathRe, ipThrottleMiddleware());
+//var pathRe = /^\/api.*\/message$/;
+//const ipThrottle = require("../middleware/ip-throttle");
+//app.use(pathRe, ipThrottleMiddleware());
 
 // routes
 app.use(require("./captcha-solution"));

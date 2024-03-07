@@ -24,7 +24,7 @@ var api = function ($http, dioConfig) {
           cb(null, data.data);
         })
         .catch(function(data) {
-          Sentry.captureException(data);
+          Raven.captureException(data);
           cb(data, null);
         });
     },

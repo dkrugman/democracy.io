@@ -1,6 +1,6 @@
 const logger = require("../logger");
 const fs = require("fs");
-const sentry = require("@sentry/node");
+//const sentry = require("@sentry/node");
 
 /**
  * Congress Legislators updater
