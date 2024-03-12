@@ -2,19 +2,15 @@ var express = require("express");
 var lusca = require("lusca");
 var logger = require("./logger");
 var config = require("./config");
-//var Sentry = require("@sentry/node");
+const path = require("path");
+
 var app = express();
 
-//Sentry.init({
-//  dsn: config.CREDENTIALS.SENTRY_DSN,
-//  disabled: true    //process.env.NODE_ENV === "test"
-//});
-
-// exception tracking
-//app.use(Sentry.Handlers.requestHandler());
+const fs = require('fs');
+const swaggerDefinition = fs.readFileSync('./.build/api.json',
+       { encoding: 'utf8', flag: 'r' });
 
 app.locals["CONFIG"] = config;
-
 
 // NOTE: this assumes you're running behind an nginx instance or other proxy
 app.enable("trust proxy");
@@ -40,16 +36,33 @@ app.use((req, res, next) => {
   next();
 });
 
+// Swagger setup
+const swaggerUi = require('swagger-ui-express');
 // routes
-const path = require("path");
 const swaggerMiddleware = require("swagger-express-middleware");
 var BUILD_DIR = path.join(__dirname, "../.build");
 var apiDef = require(path.join(BUILD_DIR, "api.json"));
 
+app.get('/api-json', (req, res) => {
+  res.setHeader('Content-Type', 'application/json');
+  res.send(swaggerSpec);
+});
+
+//app.use('/xdocs', swaggerUi.serve, swaggerUi.setup(swaggerDefinition));
+
+// By default the Swagger Explorer bar is hidden, to display it pass 'explorer : true'
+var swaggerOptions = {
+  explorer : true
+};
+
+app.use('/ydocs',async (req, res, next) => {
+   console.log("Middleware has been called");
+    next();
+  }, swaggerUi.serve, swaggerUi.setup(swaggerDefinition, swaggerOptions));
+
 // api
 swaggerMiddleware(apiDef, app, function(err, middleware) {
   if (err) throw err;
-
   // NOTE: install the swagger middleware at the top level of the app. This is required
   //       as otherwise the path param is missing the /api/1 prefix and swagger metadata
   //       doesn't get attached correctly in:
@@ -62,8 +75,5 @@ swaggerMiddleware(apiDef, app, function(err, middleware) {
 
 // static
 app.use(require("./web-static/app"));
-
-// error handlers - order dependent
-//app.use(Sentry.Handlers.errorHandler());
 
 module.exports = app;

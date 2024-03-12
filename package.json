@@ -103,6 +103,8 @@
     "serve-favicon": "^2.2.1",
     "stacktrace-js": "0.6.3",
     "swagger-express-middleware": "^1.0.0-alpha.12",
+    "swagger-jsdoc": "^3.7.0",
+    "swagger-ui-express": "^4.0.2",
     "tokenthrottle-redis": "^1.1.0",
     "us": "^1.0.3",
     "winston": "^3.1.0"

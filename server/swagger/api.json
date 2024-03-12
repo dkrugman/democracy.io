@@ -5,7 +5,7 @@
         "description": "Internal API used by the rezz.co site",
         "version": "1.0.0"
     },
-    "host": "api.rezz.co",
+    "host": "rezz.co",
     "schemes": [
         "https"
     ],
