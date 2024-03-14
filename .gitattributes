@@ -1,0 +1,2 @@
+config/production.json filter=git-crypt diff=git-crypt
+config/default.json filter=git-crypt diff=git-crypt
