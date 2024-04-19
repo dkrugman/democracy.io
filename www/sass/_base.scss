@@ -121,7 +121,13 @@ h1.header {
     margin-bottom:40px;
     max-width: 95%;
   }
-
+.campaign-creator-link {
+  border-top: 1px solid #ddd;
+  padding: 10px;
+  color: #000;
+  font-size: 14px;
+  background-color:#FF8900;
+  }
   &::before {
     content: '';
     display: block;
