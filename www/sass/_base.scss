@@ -124,10 +124,10 @@ h1.header {
 .campaign-creator-link {
   border-top: 1px solid #ddd;
   padding: 10px;
-  color: #000;
   font-size: 14px;
   background-color:#FF8900;
   }
+ 
   &::before {
     content: '';
     display: block;
@@ -142,6 +142,15 @@ h1.header {
     margin-bottom: 7px;
   }
 }
+
+.campaign-creator-link a:link {
+  color: #000;
+  text-decoration: underline;
+    &:hover {
+        color: #fff;
+    }
+}
+
 .checkbox input[type="checkbox"] {
     display:none;
 }

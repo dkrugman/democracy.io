@@ -1,5 +1,7 @@
 FROM node:carbon-alpine
 
+COPY vscode-skip-server-requirements-check /tmp/vscode-skip-server-requirements-check
+
 RUN apk --update --no-cache add \
     build-base file autoconf make gcc g++ python \
     alpine-sdk automake autoconf make nasm gcc g++ zlib zlib-dev \
@@ -15,7 +17,7 @@ ENV PATH /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/opt/democ
 WORKDIR /opt/democracy.io
 
 COPY . /opt/democracy.io
-COPY ./config/custom-environment-variables.json.example /opt/democracy.io/config/custom-environment-variables.json
+# COPY ./config/custom-environment-variables.json.example /opt/democracy.io/config/custom-environment-variables.json
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["sh", "./entrypoint.sh"]
 CMD ["node", "server.js"]
